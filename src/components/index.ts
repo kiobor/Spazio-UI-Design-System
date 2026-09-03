@@ -6,3 +6,7 @@ export { Select, selectVariants, type SelectProps } from "./Select";
 export { Badge, badgeVariants, type BadgeProps } from "./Badge";
 export { Avatar, avatarVariants, type AvatarProps } from "./Avatar";
 export { Spinner, spinnerVariants, type SpinnerProps } from "./Spinner";
+export {
+  Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
+  cardVariants, type CardProps,
+} from "./Card";
