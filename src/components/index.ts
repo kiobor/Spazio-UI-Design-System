@@ -21,3 +21,4 @@ export {
 } from "./Accordion";
 export { Tooltip, type TooltipProps } from "./Tooltip";
 export { Modal, modalVariants, type ModalProps } from "./Modal";
+export { Toast, toastVariants, type ToastProps, ToastProvider, useToast, type ToastOptions } from "./Toast";
