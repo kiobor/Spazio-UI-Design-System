@@ -10,3 +10,4 @@ export {
   Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
   cardVariants, type CardProps,
 } from "./Card";
+export { Switch, switchVariants, type SwitchProps } from "./Switch";
