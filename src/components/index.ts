@@ -19,3 +19,4 @@ export {
   Accordion, AccordionItem, AccordionTrigger, AccordionContent,
   type AccordionProps, type AccordionItemProps,
 } from "./Accordion";
+export { Tooltip, type TooltipProps } from "./Tooltip";
