@@ -35,7 +35,9 @@
     "format:check": "prettier --check \"src/**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
     "build:tokens": "npx tsx scripts/build-tokens.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -78,6 +80,17 @@
     "tsx": "^4.23.13",
     "typescript": "^5.9.3",
     "vitest": "^4.1.11",
-    "vitest-axe": "^0.1.0"
+    "vitest-axe": "^0.1.0",
+    "storybook": "^10.6.0",
+    "@storybook/react-vite": "^10.6.0",
+    "@chromatic-com/storybook": "latest",
+    "@storybook/addon-vitest": "^10.6.0",
+    "@storybook/addon-a11y": "^10.6.0",
+    "@storybook/addon-docs": "^10.6.0",
+    "@storybook/addon-mcp": "^10.6.0",
+    "eslint-plugin-storybook": "^10.6.0",
+    "@vitest/browser-playwright": "4.1.11",
+    "@vitest/coverage-v8": "4.1.11",
+    "playwright": "latest"
   }
 }
