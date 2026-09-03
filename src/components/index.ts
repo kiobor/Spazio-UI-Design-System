@@ -11,3 +11,7 @@ export {
   cardVariants, type CardProps,
 } from "./Card";
 export { Switch, switchVariants, type SwitchProps } from "./Switch";
+export {
+  Tabs, TabsList, TabsTrigger, TabsContent,
+  type TabsProps, type TabsTriggerProps, type TabsContentProps,
+} from "./Tabs";
