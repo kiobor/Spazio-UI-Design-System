@@ -46,6 +46,11 @@
     "react": ">=18",
     "react-dom": ">=18"
   },
+  "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0"
+  },
   "keywords": [
     "react",
     "design-system",
@@ -79,8 +84,6 @@
     "@typescript-eslint/parser": "^7.18.0",
     "@vitest/browser-playwright": "4.1.11",
     "@vitest/coverage-v8": "4.1.11",
-    "class-variance-authority": "^0.7.1",
-    "clsx": "^2.1.1",
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-storybook": "^10.6.0",
@@ -91,7 +94,6 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "storybook": "^10.6.0",
-    "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "tsup": "^8.5.1",
     "tsx": "^4.23.13",

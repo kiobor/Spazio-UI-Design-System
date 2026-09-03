@@ -18,13 +18,13 @@ const positionClasses: Record<TooltipSide, string> = {
   right: "left-full top-1/2 -translate-y-1/2 ml-2",
 };
 
-const Tooltip: React.FC<TooltipProps> = ({
+const Tooltip = React.forwardRef<HTMLSpanElement, TooltipProps>(({
   content,
   side = "top",
   delay = 200,
   children,
   className,
-}) => {
+}, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const tooltipId = useId();
@@ -40,6 +40,7 @@ const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <span
+      ref={ref}
       className="relative inline-flex"
       onMouseEnter={show}
       onMouseLeave={hide}
@@ -63,7 +64,7 @@ const Tooltip: React.FC<TooltipProps> = ({
       )}
     </span>
   );
-};
+});
 
 Tooltip.displayName = "Tooltip";
 

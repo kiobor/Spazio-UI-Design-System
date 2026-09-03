@@ -29,9 +29,19 @@ interface ModalProps extends VariantProps<typeof modalVariants> {
   className?: string;
 }
 
-const Modal: React.FC<ModalProps> = ({ open, onClose, title, size, children, className }) => {
+const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
+  ({ open, onClose, title, size, children, className }, ref) => {
   const titleId = useId();
   const focusTrapRef = useFocusTrap(open);
+
+  const mergedRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      (focusTrapRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+    },
+    [ref, focusTrapRef],
+  );
 
   const handleEscape = useCallback(
     (e: KeyboardEvent) => {
@@ -61,7 +71,7 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, title, size, children, cla
         aria-hidden="true"
       />
       <div
-        ref={focusTrapRef}
+        ref={mergedRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
@@ -87,7 +97,8 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, title, size, children, cla
     </div>,
     document.body,
   );
-};
+  },
+);
 
 Modal.displayName = "Modal";
 

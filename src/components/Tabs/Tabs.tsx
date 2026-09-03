@@ -1,9 +1,10 @@
-import React, { useState, useCallback, useRef, createContext, useContext } from "react";
+import React, { useState, useCallback, useRef, createContext, useContext, useId } from "react";
 import { cn } from "../../lib/cn";
 
 interface TabsContextValue {
   activeTab: string;
   setActiveTab: (value: string) => void;
+  baseId: string;
 }
 
 const TabsContext = createContext<TabsContextValue | null>(null);
@@ -25,6 +26,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     const [uncontrolled, setUncontrolled] = useState(defaultValue);
     const isControlled = controlledValue !== undefined;
     const activeTab = isControlled ? controlledValue : uncontrolled;
+    const baseId = useId();
 
     const setActiveTab = useCallback(
       (val: string) => {
@@ -35,7 +37,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     );
 
     return (
-      <TabsContext.Provider value={{ activeTab, setActiveTab }}>
+      <TabsContext.Provider value={{ activeTab, setActiveTab, baseId }}>
         <div ref={ref} className={cn("w-full", className)} {...props}>
           {children}
         </div>
@@ -95,7 +97,7 @@ interface TabsTriggerProps extends React.ButtonHTMLAttributes<HTMLButtonElement>
 
 const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
   ({ className, value, ...props }, ref) => {
-    const { activeTab, setActiveTab } = useTabsContext();
+    const { activeTab, setActiveTab, baseId } = useTabsContext();
     const isSelected = activeTab === value;
 
     return (
@@ -103,6 +105,8 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
         ref={ref}
         type="button"
         role="tab"
+        id={`${baseId}-trigger-${value}`}
+        aria-controls={`${baseId}-panel-${value}`}
         aria-selected={isSelected}
         tabIndex={isSelected ? 0 : -1}
         className={cn(
@@ -124,13 +128,15 @@ interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
   ({ className, value, ...props }, ref) => {
-    const { activeTab } = useTabsContext();
+    const { activeTab, baseId } = useTabsContext();
     if (activeTab !== value) return null;
 
     return (
       <div
         ref={ref}
         role="tabpanel"
+        id={`${baseId}-panel-${value}`}
+        aria-labelledby={`${baseId}-trigger-${value}`}
         tabIndex={0}
         className={cn("mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring", className)}
         {...props}
