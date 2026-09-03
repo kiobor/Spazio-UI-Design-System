@@ -37,7 +37,10 @@
     "build:tokens": "npx tsx scripts/build-tokens.ts",
     "prepublishOnly": "npm run build",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "changeset": "changeset",
+    "version": "changeset version",
+    "release": "npm run build && changeset publish"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -58,6 +61,8 @@
     "url": "https://github.com/nicofabb/spazio-ui"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.0",
+    "@changesets/cli": "^3.0.1",
     "@chromatic-com/storybook": "latest",
     "@storybook/addon-a11y": "^10.6.0",
     "@storybook/addon-docs": "^10.6.0",
