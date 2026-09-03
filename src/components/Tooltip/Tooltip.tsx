@@ -26,7 +26,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   className,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const tooltipId = useId();
 
   const show = useCallback(() => {

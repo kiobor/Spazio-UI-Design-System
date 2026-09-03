@@ -12,7 +12,7 @@ interface ToastEntry extends ToastOptions {
   id: string;
 }
 
-interface ToastContextValue {
+export interface ToastContextValue {
   toast: (options: ToastOptions) => void;
 }
 
