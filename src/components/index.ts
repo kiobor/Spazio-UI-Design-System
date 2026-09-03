@@ -15,3 +15,7 @@ export {
   Tabs, TabsList, TabsTrigger, TabsContent,
   type TabsProps, type TabsTriggerProps, type TabsContentProps,
 } from "./Tabs";
+export {
+  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
+  type AccordionProps, type AccordionItemProps,
+} from "./Accordion";
