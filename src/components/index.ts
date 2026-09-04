@@ -7,18 +7,40 @@ export { Badge, badgeVariants, type BadgeProps } from "./Badge";
 export { Avatar, avatarVariants, type AvatarProps } from "./Avatar";
 export { Spinner, spinnerVariants, type SpinnerProps } from "./Spinner";
 export {
-  Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter,
-  cardVariants, type CardProps,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  cardVariants,
+  type CardProps,
 } from "./Card";
 export { Switch, switchVariants, type SwitchProps } from "./Switch";
 export {
-  Tabs, TabsList, TabsTrigger, TabsContent,
-  type TabsProps, type TabsTriggerProps, type TabsContentProps,
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  type TabsProps,
+  type TabsTriggerProps,
+  type TabsContentProps,
 } from "./Tabs";
 export {
-  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
-  type AccordionProps, type AccordionItemProps,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  type AccordionProps,
+  type AccordionItemProps,
 } from "./Accordion";
 export { Tooltip, type TooltipProps } from "./Tooltip";
 export { Modal, modalVariants, type ModalProps } from "./Modal";
-export { Toast, toastVariants, type ToastProps, ToastProvider, useToast, type ToastOptions } from "./Toast";
+export {
+  Toast,
+  toastVariants,
+  type ToastProps,
+  ToastProvider,
+  useToast,
+  type ToastOptions,
+} from "./Toast";

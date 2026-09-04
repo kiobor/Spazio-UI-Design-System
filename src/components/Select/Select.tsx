@@ -18,17 +18,12 @@ const selectVariants = cva(
 );
 
 interface SelectProps
-  extends React.SelectHTMLAttributes<HTMLSelectElement>,
-    VariantProps<typeof selectVariants> {}
+  extends React.SelectHTMLAttributes<HTMLSelectElement>, VariantProps<typeof selectVariants> {}
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
   ({ className, variant, children, ...props }, ref) => {
     return (
-      <select
-        className={cn(selectVariants({ variant }), className)}
-        ref={ref}
-        {...props}
-      >
+      <select className={cn(selectVariants({ variant }), className)} ref={ref} {...props}>
         {children}
       </select>
     );

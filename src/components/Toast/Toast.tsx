@@ -21,7 +21,8 @@ const toastVariants = cva(
 );
 
 interface ToastProps
-  extends VariantProps<typeof toastVariants>,
+  extends
+    VariantProps<typeof toastVariants>,
     Omit<React.HTMLAttributes<HTMLDivElement>, "id" | "title"> {
   id: string;
   title: string;
@@ -49,7 +50,15 @@ const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
           className="shrink-0 rounded-sm opacity-70 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           aria-label="Dismiss"
         >
-          <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <svg
+            className="h-4 w-4"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
             <path d="M18 6 6 18M6 6l12 12" />
           </svg>
         </button>

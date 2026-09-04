@@ -19,8 +19,7 @@ const avatarVariants = cva(
 );
 
 interface AvatarProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof avatarVariants> {
+  extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof avatarVariants> {
   src?: string;
   alt: string;
   fallback?: string;

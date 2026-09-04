@@ -38,17 +38,14 @@ const badgeVariants = cva(
 );
 
 interface BadgeProps
-  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "color">,
+  extends
+    Omit<React.HTMLAttributes<HTMLSpanElement>, "color">,
     VariantProps<typeof badgeVariants> {}
 
 const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   ({ className, variant, color, ...props }, ref) => {
     return (
-      <span
-        className={cn(badgeVariants({ variant, color }), className)}
-        ref={ref}
-        {...props}
-      />
+      <span className={cn(badgeVariants({ variant, color }), className)} ref={ref} {...props} />
     );
   },
 );

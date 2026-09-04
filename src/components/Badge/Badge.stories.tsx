@@ -6,7 +6,10 @@ const meta: Meta<typeof Badge> = {
   component: Badge,
   argTypes: {
     variant: { control: "select", options: ["solid", "outline"] },
-    color: { control: "select", options: ["default", "primary", "success", "warning", "destructive"] },
+    color: {
+      control: "select",
+      options: ["default", "primary", "success", "warning", "destructive"],
+    },
   },
 };
 

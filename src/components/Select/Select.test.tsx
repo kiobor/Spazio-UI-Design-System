@@ -20,7 +20,11 @@ describe("Select", () => {
 
   it("forwards ref", () => {
     const ref = { current: null as HTMLSelectElement | null };
-    render(<Select ref={ref} aria-label="test">{options}</Select>);
+    render(
+      <Select ref={ref} aria-label="test">
+        {options}
+      </Select>,
+    );
     expect(ref.current).toBeInstanceOf(HTMLSelectElement);
   });
 
@@ -32,12 +36,20 @@ describe("Select", () => {
   });
 
   it("applies error variant", () => {
-    const { container } = render(<Select variant="error" aria-label="test">{options}</Select>);
+    const { container } = render(
+      <Select variant="error" aria-label="test">
+        {options}
+      </Select>,
+    );
     expect(container.firstChild).toHaveClass("border-destructive");
   });
 
   it("merges custom className", () => {
-    const { container } = render(<Select className="custom" aria-label="test">{options}</Select>);
+    const { container } = render(
+      <Select className="custom" aria-label="test">
+        {options}
+      </Select>,
+    );
     expect(container.firstChild).toHaveClass("custom");
   });
 

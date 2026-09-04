@@ -94,43 +94,44 @@ const AccordionItem = React.forwardRef<HTMLDivElement, AccordionItemProps>(
 );
 AccordionItem.displayName = "AccordionItem";
 
-const AccordionTrigger = React.forwardRef<HTMLButtonElement, React.ButtonHTMLAttributes<HTMLButtonElement>>(
-  ({ className, children, ...props }, ref) => {
-    const { toggle } = useAccordionContext();
-    const { value, isOpen, triggerId, contentId } = useItemContext();
+const AccordionTrigger = React.forwardRef<
+  HTMLButtonElement,
+  React.ButtonHTMLAttributes<HTMLButtonElement>
+>(({ className, children, ...props }, ref) => {
+  const { toggle } = useAccordionContext();
+  const { value, isOpen, triggerId, contentId } = useItemContext();
 
-    return (
-      <h3>
-        <button
-          ref={ref}
-          type="button"
-          id={triggerId}
-          aria-expanded={isOpen}
-          aria-controls={contentId}
-          className={cn(
-            "flex w-full items-center justify-between py-4 text-sm font-medium transition-all hover:underline",
-            className,
-          )}
-          onClick={() => toggle(value)}
-          {...props}
+  return (
+    <h3>
+      <button
+        ref={ref}
+        type="button"
+        id={triggerId}
+        aria-expanded={isOpen}
+        aria-controls={contentId}
+        className={cn(
+          "flex w-full items-center justify-between py-4 text-sm font-medium transition-all hover:underline",
+          className,
+        )}
+        onClick={() => toggle(value)}
+        {...props}
+      >
+        {children}
+        <svg
+          className={cn("h-4 w-4 shrink-0 transition-transform", isOpen && "rotate-180")}
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          strokeWidth={2}
+          aria-hidden="true"
         >
-          {children}
-          <svg
-            className={cn("h-4 w-4 shrink-0 transition-transform", isOpen && "rotate-180")}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-            aria-hidden="true"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-      </h3>
-    );
-  },
-);
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+    </h3>
+  );
+});
 AccordionTrigger.displayName = "AccordionTrigger";
 
 const AccordionContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
@@ -161,6 +162,10 @@ const AccordionContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
 AccordionContent.displayName = "AccordionContent";
 
 export {
-  Accordion, AccordionItem, AccordionTrigger, AccordionContent,
-  type AccordionProps, type AccordionItemProps,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  type AccordionProps,
+  type AccordionItemProps,
 };

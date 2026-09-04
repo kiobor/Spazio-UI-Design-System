@@ -18,53 +18,49 @@ const positionClasses: Record<TooltipSide, string> = {
   right: "left-full top-1/2 -translate-y-1/2 ml-2",
 };
 
-const Tooltip = React.forwardRef<HTMLSpanElement, TooltipProps>(({
-  content,
-  side = "top",
-  delay = 200,
-  children,
-  className,
-}, ref) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const tooltipId = useId();
+const Tooltip = React.forwardRef<HTMLSpanElement, TooltipProps>(
+  ({ content, side = "top", delay = 200, children, className }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const timeoutRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
+    const tooltipId = useId();
 
-  const show = useCallback(() => {
-    timeoutRef.current = setTimeout(() => setIsOpen(true), delay);
-  }, [delay]);
+    const show = useCallback(() => {
+      timeoutRef.current = setTimeout(() => setIsOpen(true), delay);
+    }, [delay]);
 
-  const hide = useCallback(() => {
-    clearTimeout(timeoutRef.current);
-    setIsOpen(false);
-  }, []);
+    const hide = useCallback(() => {
+      clearTimeout(timeoutRef.current);
+      setIsOpen(false);
+    }, []);
 
-  return (
-    <span
-      ref={ref}
-      className="relative inline-flex"
-      onMouseEnter={show}
-      onMouseLeave={hide}
-      onFocus={show}
-      onBlur={hide}
-    >
-      {React.cloneElement(children, { "aria-describedby": isOpen ? tooltipId : undefined })}
-      {isOpen && (
-        <span
-          id={tooltipId}
-          role="tooltip"
-          className={cn(
-            "absolute z-50 rounded-md bg-foreground px-3 py-1.5 text-xs text-background shadow-md",
-            "animate-[fadeIn_150ms_ease-out]",
-            positionClasses[side],
-            className,
-          )}
-        >
-          {content}
-        </span>
-      )}
-    </span>
-  );
-});
+    return (
+      <span
+        ref={ref}
+        className="relative inline-flex"
+        onMouseEnter={show}
+        onMouseLeave={hide}
+        onFocus={show}
+        onBlur={hide}
+      >
+        {React.cloneElement(children, { "aria-describedby": isOpen ? tooltipId : undefined })}
+        {isOpen && (
+          <span
+            id={tooltipId}
+            role="tooltip"
+            className={cn(
+              "absolute z-50 rounded-md bg-foreground px-3 py-1.5 text-xs text-background shadow-md",
+              "animate-[fadeIn_150ms_ease-out]",
+              positionClasses[side],
+              className,
+            )}
+          >
+            {content}
+          </span>
+        )}
+      </span>
+    );
+  },
+);
 
 Tooltip.displayName = "Tooltip";
 

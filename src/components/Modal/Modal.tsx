@@ -4,22 +4,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 import { useFocusTrap } from "../../lib/useFocusTrap";
 
-const modalVariants = cva(
-  "relative w-full rounded-lg bg-background p-6 shadow-lg",
-  {
-    variants: {
-      size: {
-        sm: "max-w-sm",
-        md: "max-w-lg",
-        lg: "max-w-2xl",
-        full: "max-w-[calc(100vw-2rem)]",
-      },
-    },
-    defaultVariants: {
-      size: "md",
+const modalVariants = cva("relative w-full rounded-lg bg-background p-6 shadow-lg", {
+  variants: {
+    size: {
+      sm: "max-w-sm",
+      md: "max-w-lg",
+      lg: "max-w-2xl",
+      full: "max-w-[calc(100vw-2rem)]",
     },
   },
-);
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 interface ModalProps extends VariantProps<typeof modalVariants> {
   open: boolean;
@@ -31,72 +28,80 @@ interface ModalProps extends VariantProps<typeof modalVariants> {
 
 const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
   ({ open, onClose, title, size, children, className }, ref) => {
-  const titleId = useId();
-  const focusTrapRef = useFocusTrap(open);
+    const titleId = useId();
+    const focusTrapRef = useFocusTrap(open);
 
-  const mergedRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      (focusTrapRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
-      if (typeof ref === "function") ref(node);
-      else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
-    },
-    [ref, focusTrapRef],
-  );
+    const mergedRef = useCallback(
+      (node: HTMLDivElement | null) => {
+        (focusTrapRef as React.MutableRefObject<HTMLDivElement | null>).current = node;
+        if (typeof ref === "function") ref(node);
+        else if (ref) (ref as React.MutableRefObject<HTMLDivElement | null>).current = node;
+      },
+      [ref, focusTrapRef],
+    );
 
-  const handleEscape = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    },
-    [onClose],
-  );
+    const handleEscape = useCallback(
+      (e: KeyboardEvent) => {
+        if (e.key === "Escape") onClose();
+      },
+      [onClose],
+    );
 
-  useEffect(() => {
-    if (!open) return;
-    document.addEventListener("keydown", handleEscape);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "";
-    };
-  }, [open, handleEscape]);
+    useEffect(() => {
+      if (!open) return;
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.removeEventListener("keydown", handleEscape);
+        document.body.style.overflow = "";
+      };
+    }, [open, handleEscape]);
 
-  if (!open) return null;
+    if (!open) return null;
 
-  return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center">
-      <div
-        data-testid="modal-backdrop"
-        className="fixed inset-0 bg-black/50 animate-[fadeIn_150ms_ease-out]"
-        onClick={onClose}
-        aria-hidden="true"
-      />
-      <div
-        ref={mergedRef}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        className={cn(modalVariants({ size }), "animate-[scaleIn_150ms_ease-out]", className)}
-      >
-        <div className="flex items-center justify-between mb-4">
-          <h2 id={titleId} className="text-lg font-semibold">
-            {title}
-          </h2>
-          <button
-            type="button"
-            onClick={onClose}
-            className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-            aria-label="Close"
-          >
-            <svg className="h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-              <path d="M18 6 6 18M6 6l12 12" />
-            </svg>
-          </button>
+    return createPortal(
+      <div className="fixed inset-0 z-50 flex items-center justify-center">
+        <div
+          data-testid="modal-backdrop"
+          className="fixed inset-0 bg-black/50 animate-[fadeIn_150ms_ease-out]"
+          onClick={onClose}
+          aria-hidden="true"
+        />
+        <div
+          ref={mergedRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          className={cn(modalVariants({ size }), "animate-[scaleIn_150ms_ease-out]", className)}
+        >
+          <div className="flex items-center justify-between mb-4">
+            <h2 id={titleId} className="text-lg font-semibold">
+              {title}
+            </h2>
+            <button
+              type="button"
+              onClick={onClose}
+              className="rounded-sm opacity-70 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label="Close"
+            >
+              <svg
+                className="h-4 w-4"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
+                <path d="M18 6 6 18M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          {children}
         </div>
-        {children}
-      </div>
-    </div>,
-    document.body,
-  );
+      </div>,
+      document.body,
+    );
   },
 );
 

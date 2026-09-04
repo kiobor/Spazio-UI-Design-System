@@ -1,4 +1,12 @@
-import React, { useState, useCallback, useMemo, useRef, createContext, useContext, useId } from "react";
+import React, {
+  useState,
+  useCallback,
+  useMemo,
+  useRef,
+  createContext,
+  useContext,
+  useId,
+} from "react";
 import { cn } from "../../lib/cn";
 
 interface TabsContextValue {
@@ -59,7 +67,9 @@ const TabsList = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
     const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
       const list = listRef.current;
       if (!list) return;
-      const triggers = Array.from(list.querySelectorAll<HTMLButtonElement>('[role="tab"]:not([disabled])'));
+      const triggers = Array.from(
+        list.querySelectorAll<HTMLButtonElement>('[role="tab"]:not([disabled])'),
+      );
       const current = triggers.findIndex((t) => t === document.activeElement);
       if (current === -1) return;
 
@@ -143,7 +153,10 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
         id={`${baseId}-panel-${value}`}
         aria-labelledby={`${baseId}-trigger-${value}`}
         tabIndex={0}
-        className={cn("mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring", className)}
+        className={cn(
+          "mt-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+          className,
+        )}
         {...props}
       />
     );
@@ -151,4 +164,12 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
 );
 TabsContent.displayName = "TabsContent";
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, type TabsProps, type TabsTriggerProps, type TabsContentProps };
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  type TabsProps,
+  type TabsTriggerProps,
+  type TabsContentProps,
+};

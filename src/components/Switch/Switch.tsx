@@ -31,7 +31,8 @@ const thumbTranslateMap = {
 } as const;
 
 interface SwitchProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange">,
+  extends
+    Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, "onChange">,
     VariantProps<typeof switchVariants> {
   checked?: boolean;
   defaultChecked?: boolean;
@@ -39,7 +40,17 @@ interface SwitchProps
 }
 
 const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
-  ({ className, size = "md", checked: controlledChecked, defaultChecked = false, onCheckedChange, ...props }, ref) => {
+  (
+    {
+      className,
+      size = "md",
+      checked: controlledChecked,
+      defaultChecked = false,
+      onCheckedChange,
+      ...props
+    },
+    ref,
+  ) => {
     const [uncontrolled, setUncontrolled] = useState(defaultChecked);
     const isControlled = controlledChecked !== undefined;
     const isChecked = isControlled ? controlledChecked : uncontrolled;
@@ -57,11 +68,7 @@ const Switch = React.forwardRef<HTMLButtonElement, SwitchProps>(
         type="button"
         role="switch"
         aria-checked={isChecked}
-        className={cn(
-          switchVariants({ size }),
-          isChecked ? "bg-primary" : "bg-muted",
-          className,
-        )}
+        className={cn(switchVariants({ size }), isChecked ? "bg-primary" : "bg-muted", className)}
         onClick={handleClick}
         ref={ref}
         {...props}

@@ -8,9 +8,7 @@ import { useToast } from "./useToast";
 function TestComponent() {
   const { toast } = useToast();
   return (
-    <button onClick={() => toast({ title: "Success!", variant: "success" })}>
-      Show Toast
-    </button>
+    <button onClick={() => toast({ title: "Success!", variant: "success" })}>Show Toast</button>
   );
 }
 

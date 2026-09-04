@@ -33,7 +33,9 @@ export const Error: Story = {
     <div className="grid gap-2">
       <Label htmlFor="name">Name</Label>
       <Input id="name" variant="error" aria-invalid="true" aria-describedby="name-error" />
-      <p id="name-error" className="text-sm text-destructive">Name is required</p>
+      <p id="name-error" className="text-sm text-destructive">
+        Name is required
+      </p>
     </div>
   ),
 };

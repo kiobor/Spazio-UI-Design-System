@@ -6,7 +6,13 @@ import { Button } from "../Button";
 
 const meta: Meta = {
   title: "Components/Toast",
-  decorators: [(Story) => <ToastProvider><Story /></ToastProvider>],
+  decorators: [
+    (Story) => (
+      <ToastProvider>
+        <Story />
+      </ToastProvider>
+    ),
+  ],
 };
 
 export default meta;

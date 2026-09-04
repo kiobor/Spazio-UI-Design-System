@@ -18,9 +18,13 @@ export const Default: Story = {
       <>
         <Button onClick={() => setOpen(true)}>Open Modal</Button>
         <Modal open={open} onClose={() => setOpen(false)} title="Example Modal">
-          <p className="text-sm text-muted-foreground">This is a modal dialog with focus trap and keyboard support.</p>
+          <p className="text-sm text-muted-foreground">
+            This is a modal dialog with focus trap and keyboard support.
+          </p>
           <div className="mt-4 flex justify-end gap-2">
-            <Button variant="secondary" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button variant="secondary" onClick={() => setOpen(false)}>
+              Cancel
+            </Button>
             <Button onClick={() => setOpen(false)}>Confirm</Button>
           </div>
         </Modal>
