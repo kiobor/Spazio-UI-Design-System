@@ -3,7 +3,7 @@
 An accessible, open-source React design system built with Tailwind CSS.
 
 [![npm version](https://img.shields.io/npm/v/spazio-ui.svg)](https://www.npmjs.com/package/spazio-ui)
-[![license](https://img.shields.io/npm/l/spazio-ui.svg)](https://github.com/nicofabb/spazio-ui/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/spazio-ui.svg)](https://github.com/kiobor/Spazio-UI-Design-System/blob/main/LICENSE)
 
 ## Installation
 
@@ -63,8 +63,8 @@ function App() {
 ## Development
 
 ```bash
-git clone https://github.com/nicofabb/spazio-ui.git
-cd spazio-ui
+git clone https://github.com/kiobor/Spazio-UI-Design-System.git
+cd Spazio-UI-Design-System
 npm install
 npm run dev          # watch mode
 npm run storybook    # component playground

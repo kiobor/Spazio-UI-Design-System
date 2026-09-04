@@ -63,7 +63,7 @@
   "author": "Nicola Fabbri",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nicofabb/spazio-ui"
+    "url": "https://github.com/kiobor/Spazio-UI-Design-System"
   },
   "devDependencies": {
     "@changesets/changelog-github": "^1.0.0",
