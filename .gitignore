@@ -9,4 +9,5 @@ storybook-static/
 .next/
 .superpowers/
 
+.claude/launch.json
 *storybook.log
