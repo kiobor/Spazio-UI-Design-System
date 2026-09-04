@@ -54,7 +54,7 @@ const Tooltip = React.forwardRef<HTMLSpanElement, TooltipProps>(({
           role="tooltip"
           className={cn(
             "absolute z-50 rounded-md bg-foreground px-3 py-1.5 text-xs text-background shadow-md",
-            "animate-in fade-in-0",
+            "animate-[fadeIn_150ms_ease-out]",
             positionClasses[side],
             className,
           )}

@@ -36,7 +36,10 @@ describe("Accordion", () => {
     renderAccordion("single");
     await user.click(screen.getByRole("button", { name: "Section 1" }));
     await user.click(screen.getByRole("button", { name: "Section 2" }));
-    expect(screen.queryByText("Content 1")).not.toBeInTheDocument();
+    expect(screen.getByText("Content 1").closest('[role="region"]')).toHaveAttribute(
+      "aria-hidden",
+      "true",
+    );
     expect(screen.getByText("Content 2")).toBeVisible();
   });
 

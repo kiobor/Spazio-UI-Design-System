@@ -7,7 +7,7 @@ const inputVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-border",
+        default: "border-border hover:border-muted-foreground/50",
         error: "border-destructive focus-visible:ring-destructive",
       },
       inputSize: {

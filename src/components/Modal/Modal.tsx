@@ -66,7 +66,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
         data-testid="modal-backdrop"
-        className="fixed inset-0 bg-black/50"
+        className="fixed inset-0 bg-black/50 animate-[fadeIn_150ms_ease-out]"
         onClick={onClose}
         aria-hidden="true"
       />
@@ -75,7 +75,7 @@ const Modal = React.forwardRef<HTMLDivElement, ModalProps>(
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className={cn(modalVariants({ size }), className)}
+        className={cn(modalVariants({ size }), "animate-[scaleIn_150ms_ease-out]", className)}
       >
         <div className="flex items-center justify-between mb-4">
           <h2 id={titleId} className="text-lg font-semibold">

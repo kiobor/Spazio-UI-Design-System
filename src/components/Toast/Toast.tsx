@@ -3,15 +3,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "../../lib/cn";
 
 const toastVariants = cva(
-  "pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-lg border p-4 shadow-lg",
+  "pointer-events-auto flex w-full max-w-sm items-start gap-3 rounded-lg border p-4 shadow-lg animate-[slideInRight_200ms_ease-out]",
   {
     variants: {
       variant: {
         default: "border-border bg-background text-foreground",
-        success: "border-success/30 bg-green-50 text-foreground",
-        error: "border-destructive/30 bg-red-50 text-foreground",
-        warning: "border-warning/30 bg-amber-50 text-foreground",
-        info: "border-primary/30 bg-blue-50 text-foreground",
+        success: "border-success/30 bg-success/10 text-foreground",
+        error: "border-destructive/30 bg-destructive/10 text-foreground",
+        warning: "border-warning/30 bg-warning/10 text-foreground",
+        info: "border-primary/30 bg-primary/10 text-foreground",
       },
     },
     defaultVariants: {
@@ -31,7 +31,7 @@ interface ToastProps
 }
 
 const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
-  ({ id, title, description, variant, onDismiss, className, ...props }, ref) => {
+  ({ title, description, variant, onDismiss, className, ...props }, ref) => {
     return (
       <div
         ref={ref}

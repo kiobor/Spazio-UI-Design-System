@@ -1,4 +1,4 @@
-import React, { useState, useCallback, createContext, useContext, useId } from "react";
+import React, { useState, useCallback, useMemo, createContext, useContext, useId } from "react";
 import { cn } from "../../lib/cn";
 
 interface AccordionContextValue {
@@ -54,8 +54,10 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       [type],
     );
 
+    const ctxValue = useMemo(() => ({ openItems, toggle }), [openItems, toggle]);
+
     return (
-      <AccordionContext.Provider value={{ openItems, toggle }}>
+      <AccordionContext.Provider value={ctxValue}>
         <div ref={ref} className={cn("w-full", className)} {...props}>
           {children}
         </div>
@@ -135,18 +137,23 @@ const AccordionContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<H
   ({ className, children, ...props }, ref) => {
     const { isOpen, contentId, triggerId } = useItemContext();
 
-    if (!isOpen) return null;
-
     return (
       <div
         ref={ref}
         id={contentId}
         role="region"
         aria-labelledby={triggerId}
-        className={cn("pb-4 text-sm", className)}
+        aria-hidden={!isOpen}
+        className={cn(
+          "grid transition-[grid-template-rows] duration-200 ease-out overflow-hidden",
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]",
+          className,
+        )}
         {...props}
       >
-        {children}
+        <div className="min-h-0 overflow-hidden">
+          <div className="pb-4 text-sm">{children}</div>
+        </div>
       </div>
     );
   },

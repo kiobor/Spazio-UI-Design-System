@@ -8,7 +8,8 @@ const cardVariants = cva(
     variants: {
       variant: {
         default: "",
-        interactive: "cursor-pointer transition-shadow hover:shadow-md",
+        interactive:
+          "cursor-pointer transition-shadow hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
       },
     },
     defaultVariants: {

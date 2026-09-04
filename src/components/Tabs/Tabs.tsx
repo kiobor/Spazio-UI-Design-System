@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef, createContext, useContext, useId } from "react";
+import React, { useState, useCallback, useMemo, useRef, createContext, useContext, useId } from "react";
 import { cn } from "../../lib/cn";
 
 interface TabsContextValue {
@@ -36,8 +36,13 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       [isControlled, onValueChange],
     );
 
+    const ctxValue = useMemo(
+      () => ({ activeTab, setActiveTab, baseId }),
+      [activeTab, setActiveTab, baseId],
+    );
+
     return (
-      <TabsContext.Provider value={{ activeTab, setActiveTab, baseId }}>
+      <TabsContext.Provider value={ctxValue}>
         <div ref={ref} className={cn("w-full", className)} {...props}>
           {children}
         </div>
